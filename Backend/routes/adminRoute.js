@@ -24,8 +24,6 @@ router.get('/getStaff', (req, res) => {
 
 })
 
-
-
 //to add staff
 router.post('/addStaff', (req, res) => {
 
@@ -46,8 +44,6 @@ router.post('/addStaff', (req, res) => {
     } catch (error) {
         res.send(error)
     }
-
-
 
 })
 
