@@ -9,6 +9,7 @@ var corsOptions = {
 
 //import routes
 const receptionRoute = require('./routes/receptionRoute')
+const adminRoute = require('./routes/adminRoute')
 
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -35,6 +36,7 @@ app.get("/", (req, res) => {
 
 
 app.use('/reception',receptionRoute )
+app.use('/admin',adminRoute )
 
 
 
