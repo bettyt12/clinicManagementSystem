@@ -10,6 +10,8 @@ var corsOptions = {
 //import routes
 const receptionRoute = require('./routes/receptionRoute')
 const adminRoute = require('./routes/adminRoute')
+const nurseRoute = require('./routes/nurseRoute')
+
 
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -37,7 +39,7 @@ app.get("/", (req, res) => {
 
 app.use('/reception',receptionRoute )
 app.use('/admin',adminRoute )
-
+app.use('/nurse',nurseRoute)
 
 
 const PORT = process.env.PORT || 8080;
