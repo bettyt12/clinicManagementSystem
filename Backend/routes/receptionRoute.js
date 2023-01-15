@@ -24,6 +24,27 @@ router.get('/getPatient', (req, res) => {
 })
 
 
+//to get specific  patient by cardNumber
+router.get('/getPatient/:cardNumber', (req, res) => {
+     
+    const cardNumber = req.params.cardNumber;
+    const sqlSelect = "SELECT * FROM `patient` WHERE cardNumber=?"
+
+    try {
+        db.query(sqlSelect,[cardNumber], (err, result) => {
+            if (err) {
+                res.send(err)
+            }
+            else {
+                res.send(result)
+            }
+        })
+
+    } catch (err) {
+        res.send(err)
+    }
+
+})
 
 
 
@@ -44,13 +65,7 @@ router.post('/addPatient', (req, res) => {
         res.send(error)
     }
 
-
-
-
 })
-
-
-
 
 
 // to update patients table
@@ -77,9 +92,6 @@ router.put("/updatePatient/:cardNumber", (req, res) => {
     }
 
 })
-
-
-
 
 
 module.exports = router;
