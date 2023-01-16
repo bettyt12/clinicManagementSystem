@@ -91,8 +91,30 @@ router.put("/updatePatient/:cardNumber", (req, res) => {
         res.send(error)
     }
 
+
 })
 
 
+//change spot 
+router.put("/changeSpot/:cardNumber", (req, res) => {
+
+    const cardNumber = req.params.cardNumber;
+    const updatePatient = "UPDATE `patient` SET `spot`=? WHERE `cardNumber`=?"
+    const {spot } = req.body
+    try {
+        db.query(updatePatient, [ spot, cardNumber], (err, result) => {
+            if (err) {
+                res.send(err)
+            }
+            else {
+                res.send(result)
+            }
+        })
+
+    }
+    catch (error) {
+        res.send(error)
+    }
+})
 module.exports = router;
 
