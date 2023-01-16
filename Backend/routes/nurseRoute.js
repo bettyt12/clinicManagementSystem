@@ -8,8 +8,7 @@ const db = require('../models/db')
 router.get('/getVitalSign/:cardNumber', (req, res) => {
 
     const cardNumber = req.params.cardNumber;
-    const sqlSelect = "SELECT p.* , b.bloodPressure , t.temperature , w.weight , h.height , pu.pulse , o.oxygenSaturation , n.nurseNote  FROM patient p INNER JOIN blood_pressure b ON p.cardNumber = b.cardNumber INNER JOIN temperature t ON p.cardNumber = t.cardNumber INNER JOIN weight w ON p.cardNumber = w.cardNumber  INNER JOIN height h ON p.cardNumber = h.cardNumber INNER JOIN pulse pu ON p.cardNumber = pu.cardNumber INNER JOIN oxygen_saturation o ON p.cardNumber = o.cardNumber INNER JOIN nurse_note n ON p.cardNumber = n.cardNumber WHERE p.cardNumber=?"
-
+    const sqlSelect = " SELECT p.* , b.bloodPressure , t.temperature , w.weight , h.height , pu.pulse , o.oxygenSaturation , n.nurseNote  FROM patient p INNER JOIN blood_pressure b ON p.cardNumber = b.cardNumber INNER JOIN temperature t ON b.id_blood_pressure = t.id_temperature INNER JOIN weight w ON b.id_blood_pressure = w.id_weight INNER JOIN height h ON b.id_blood_pressure = h.id_height INNER JOIN pulse pu ON p.cardNumber = pu.id_pulse INNER JOIN oxygen_saturation o ON b.id_blood_pressure = o.id_oxygen_saturation INNER JOIN nurse_note n ON b.id_blood_pressure = n.id_nurse_note WHERE p.cardNumber=?"
     try {
         db.query(sqlSelect, [cardNumber], (err, result) => {
             if (err) {
@@ -27,13 +26,60 @@ router.get('/getVitalSign/:cardNumber', (req, res) => {
 })
 
 
+//to get specific  patient vital sign by cardNumber and date created
+router.get('/getVitalSign/:cardNumber/:date', (req, res) => {
+    const date = req.params.date;
+    const cardNumber = req.params.cardNumber;
+    const sqlSelect = " SELECT p.* , b.bloodPressure , t.temperature , w.weight , h.height , pu.pulse , o.oxygenSaturation , n.nurseNote  FROM patient p INNER JOIN blood_pressure b ON p.cardNumber = b.cardNumber INNER JOIN temperature t ON b.id_blood_pressure = t.id_temperature INNER JOIN weight w ON b.id_blood_pressure = w.id_weight INNER JOIN height h ON b.id_blood_pressure = h.id_height INNER JOIN pulse pu ON p.cardNumber = pu.id_pulse INNER JOIN oxygen_saturation o ON b.id_blood_pressure = o.id_oxygen_saturation INNER JOIN nurse_note n ON b.id_blood_pressure = n.id_nurse_note WHERE p.cardNumber=? AND b.date=?"
+
+    try {
+        db.query(sqlSelect, [cardNumber, date], (err, result) => {
+            if (err) {
+                res.send(err)
+            }
+            else {
+                res.send(result)
+            }
+        })
+
+    } catch (err) {
+        res.send(err)
+    }
+
+})
+
+
+//to get  patients vital sign by date
+router.get('/getVitalSign/date/date/:dateValue', (req, res) => {
+
+    const dateValue = req.params.dateValue;
+    const sqlSelect = " SELECT p.* , b.bloodPressure , t.temperature , w.weight , h.height , pu.pulse , o.oxygenSaturation , n.nurseNote  FROM patient p INNER JOIN blood_pressure b ON p.cardNumber = b.cardNumber INNER JOIN temperature t ON b.id_blood_pressure = t.id_temperature INNER JOIN weight w ON b.id_blood_pressure = w.id_weight INNER JOIN height h ON b.id_blood_pressure = h.id_height INNER JOIN pulse pu ON p.cardNumber = pu.id_pulse INNER JOIN oxygen_saturation o ON b.id_blood_pressure = o.id_oxygen_saturation INNER JOIN nurse_note n ON b.id_blood_pressure = n.id_nurse_note WHERE b.date=?"
+
+    try {
+        db.query(sqlSelect, [dateValue], (err, result) => {
+
+            if (err) {
+                res.send("err")
+            }
+            else {
+                res.send(result)
+            }
+        })
+
+    } catch (err) {
+        res.send(err)
+    }
+
+})
+
+
+
 
 
 //to get all  patients with its vital info
 router.get('/getVitalSign', (req, res) => {
 
-    const sqlSelect = "SELECT p.* , b.bloodPressure , t.temperature , w.weight , h.height , pu.pulse , o.oxygenSaturation , n.nurseNote  FROM patient p INNER JOIN blood_pressure b ON p.cardNumber = b.cardNumber INNER JOIN temperature t ON p.cardNumber = t.cardNumber INNER JOIN weight w ON p.cardNumber = w.cardNumber  INNER JOIN height h ON p.cardNumber = h.cardNumber INNER JOIN pulse pu ON p.cardNumber = pu.cardNumber INNER JOIN oxygen_saturation o ON p.cardNumber = o.cardNumber INNER JOIN nurse_note n ON p.cardNumber = n.cardNumber"
-
+    const sqlSelect = " SELECT p.* , b.bloodPressure , t.temperature , w.weight , h.height , pu.pulse , o.oxygenSaturation , n.nurseNote  FROM patient p INNER JOIN blood_pressure b ON p.cardNumber = b.cardNumber INNER JOIN temperature t ON b.id_blood_pressure = t.id_temperature INNER JOIN weight w ON b.id_blood_pressure = w.id_weight INNER JOIN height h ON b.id_blood_pressure = h.id_height INNER JOIN pulse pu ON p.cardNumber = pu.id_pulse INNER JOIN oxygen_saturation o ON b.id_blood_pressure = o.id_oxygen_saturation INNER JOIN nurse_note n ON b.id_blood_pressure = n.id_nurse_note "
     try {
         db.query(sqlSelect, (err, result) => {
             if (err) {
@@ -66,48 +112,45 @@ router.post('/addVitalSign/:cardNumber', async (req, res) => {
     const sqlOxyegenSaturation = "INSERT INTO `oxygen_saturation`(`cardNumber`, `oxygenSaturation`, `date`) VALUES (?,?,?)"
     const sqlNurseNote = "INSERT INTO `nurse_note`(`cardNumber`, `nurseNote`, `date`) VALUES (?,?,?)"
 
-    const checkCardPresent = "SELECT `cardNumber` FROM `blood_pressure` WHERE `cardNumber` =?";
 
     try {
 
-               await db.query(sqlBloodPressure, [cardNumber, bloodPressure, date], (err, result) => {
+        await db.query(sqlBloodPressure, [cardNumber, bloodPressure, date], (err, result) => {
+            if (err) {
+                res.send(err)
+            }
+            else {
+                db.query(sqlTemperature, [cardNumber, temperature, date], (err, result) => {
                     if (err) {
                         res.send(err)
                     }
                     else {
-                        db.query(sqlTemperature, [cardNumber, temperature, date], (err, result) => {
+                        db.query(sqlHeight, [cardNumber, height, date], (err, result) => {
                             if (err) {
                                 res.send(err)
                             }
                             else {
-                                db.query(sqlHeight, [cardNumber, height, date], (err, result) => {
+                                db.query(sqlWeight, [cardNumber, weight, date], (err, result) => {
                                     if (err) {
                                         res.send(err)
                                     }
                                     else {
-                                        db.query(sqlWeight, [cardNumber, weight, date], (err, result) => {
+                                        db.query(sqlPulse, [cardNumber, pulse, date], (err, result) => {
                                             if (err) {
                                                 res.send(err)
                                             }
                                             else {
-                                                db.query(sqlPulse, [cardNumber, pulse, date], (err, result) => {
+                                                db.query(sqlOxyegenSaturation, [cardNumber, oxygenSaturation, date], (err, result) => {
                                                     if (err) {
                                                         res.send(err)
                                                     }
                                                     else {
-                                                        db.query(sqlOxyegenSaturation, [cardNumber, oxygenSaturation, date], (err, result) => {
+                                                        db.query(sqlNurseNote, [cardNumber, nurseNote, date], (err, result) => {
                                                             if (err) {
                                                                 res.send(err)
                                                             }
                                                             else {
-                                                                db.query(sqlNurseNote, [cardNumber, nurseNote, date], (err, result) => {
-                                                                    if (err) {
-                                                                        res.send(err)
-                                                                    }
-                                                                    else {
-                                                                        res.send({ success: 'Registerd successfully!! ' })
-                                                                    }
-                                                                })
+                                                                res.send({ success: 'Registerd successfully!! ' })
                                                             }
                                                         })
                                                     }
@@ -118,11 +161,11 @@ router.post('/addVitalSign/:cardNumber', async (req, res) => {
                                 })
                             }
                         })
-
                     }
                 })
 
-         
+            }
+        })
 
 
 
