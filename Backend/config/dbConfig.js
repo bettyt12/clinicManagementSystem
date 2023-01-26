@@ -1,8 +1,7 @@
-module.exports = {
+    module.exports = {
     HOST: "localhost",
     USER: "root",
     PASSWORD: "",
-    ports: "3307:3306",
+    PORT:"3360",
     DB: "tsedal"
   };
-    
