@@ -3,5 +3,7 @@
     USER: "root",
     PASSWORD: "",
     PORT:"3360",
-    DB: "tsedal"
-  };
+    DB: "tsedal",
+   //ports: "3307:3306",
+
+  };  
