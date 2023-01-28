@@ -3,9 +3,9 @@ const router = express.Router();
 const db = require('../models/db');
 const bcrypt = require('bcrypt');// to encrypt the password
 
-const roles=require('../config/roles')
-const authenticate = require('../middleware/authenticate')
-const authorize = require('../middleware/authorize')
+// const roles=require('../config/roles')
+// const authenticate = require('../middleware/authenticate')
+// const authorize = require('../middleware/authorize')
 
 
 
@@ -13,9 +13,9 @@ const authorize = require('../middleware/authorize')
 //get all staff
 
 //if we want authorize and authenticate 
-router.get('/getStaff', authenticate, authorize([roles.admin]),(req, res) => {
+// router.get('/getStaff', authenticate, authorize([roles.admin]),(req, res) => {
  
-//  router.get('/getStaff',(req, res) => {
+ router.get('/getStaff',(req, res) => {
 
     const sqlSelect = "SELECT * FROM `staff` WHERE 1"
 

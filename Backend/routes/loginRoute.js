@@ -5,11 +5,6 @@ const bcrypt = require("bcrypt")
 const db = require('../models/db');
 const dotenv = require('dotenv')
 
-const roles = require('../config/roles')
-const authenticate = require('../middleware/authenticate')
-const authorize = require('../middleware/authorize')
-
-
 dotenv.config();
 
 // Login route
