@@ -4,8 +4,9 @@
 /package-lock.json
 /node_modules
 /Backend/node_modules
-/Backend/config/dbConfig.js
 /Backend/package-lock.json
+/Backend/.env
+/Backend/config/dbConfig.js
 /.pnp
 .pnp.js
 
