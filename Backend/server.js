@@ -12,6 +12,7 @@ const receptionRoute = require('./routes/receptionRoute')
 const adminRoute = require('./routes/adminRoute')
 const nurseRoute = require('./routes/nurseRoute')
 const loginRoute = require('./routes/loginRoute')
+const doctorRoute = require('./routes/doctorRoute')
 
 
 app.use(function (req, res, next) {
@@ -42,6 +43,8 @@ app.use('/reception',receptionRoute )
 app.use('/admin',adminRoute )
 app.use('/nurse',nurseRoute)
 app.use('/login',loginRoute)
+app.use('/doctor',doctorRoute)
+
 
 
 
