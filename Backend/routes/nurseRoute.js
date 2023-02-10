@@ -98,7 +98,6 @@ router.get('/getVitalSign', (req, res) => {
 
 
 
-
 //to add vital info
 router.post('/addVitalSign/:cardNumber', async (req, res) => {
     const cardNumber = req.params.cardNumber;
@@ -118,48 +117,63 @@ router.post('/addVitalSign/:cardNumber', async (req, res) => {
         db.beginTransaction(function (err) {
 
             if (err) {
-                if (err) { throw err; }
-
+                res.send('error starting transaction: ' + err.stack);
+                return;
             } else {
-                //my code.........
-                db.query(sqlBloodPressure, [cardNumber, bloodPressure, date], (err, result) => {
-                    if (err) {
-                        res.json({ error: "blood pressure field error" })
+                db.query(sqlBloodPressure, [cardNumber, bloodPressure, date], (error, result) => {
+                    if (error) {
+                        return db.rollback(function () {
+                            res.send('error in blood pressure field: ' + error.stack);
+                        });
                     }
                     else {
                         db.query(sqlTemperature, [cardNumber, temperature, date], (err, result) => {
                             if (err) {
-                                res.json({ error: " temperature field error" })
+                                return db.rollback(function () {
+                                    res.send('error in temperature feild: ' + err.stack);
+                                });
                             }
                             else {
                                 db.query(sqlHeight, [cardNumber, height, date], (err, result) => {
                                     if (err) {
-                                        res.json({ error: "height field error" })
+                                        return db.rollback(function () {
+                                            res.send('error in height feild: ' + err.stack);
+                                        });
                                     }
                                     else {
                                         db.query(sqlWeight, [cardNumber, weight, date], (err, result) => {
                                             if (err) {
-                                                res.json({ error: " weight field error" })
+                                                return db.rollback(function () {
+                                                    res.send('error in weight feild: ' + err.stack);
+                                                });
                                             }
                                             else {
                                                 db.query(sqlPulse, [cardNumber, pulse, date], (err, result) => {
                                                     if (err) {
-                                                        res.json({ error: " pulse field error" })
+                                                        return db.rollback(function () {
+                                                            res.send('error in pulse feild: ' + err.stack);
+                                                        });
                                                     }
                                                     else {
                                                         db.query(sqlOxyegenSaturation, [cardNumber, oxygenSaturation, date], (err, result) => {
                                                             if (err) {
-                                                                res.json({ error: "oxyegen saturation  field error" })
+                                                                return db.rollback(function () {
+                                                                    res.send('error in oxyegen saturation feild: ' + err.stack);
+                                                                });
                                                             }
                                                             else {
                                                                 db.query(sqlNurseNote, [cardNumber, nurseNote, date], (err, result) => {
                                                                     if (err) {
-                                                                        res.json({ error: "nurse note field error" })
+                                                                        return db.rollback(function () {
+                                                                            res.send('error in nurse note feild: ' + err.stack);
+                                                                        });
                                                                     }
                                                                     else {
                                                                         db.commit(function (err) {
                                                                             if (err) {
-                                                                                res.send("error at commit")
+                                                                                return connection.rollback(function () {
+                                                                                    res.send('error in commit: ' + err.stack);
+                                                                                });
                                                                             } else {
                                                                                 res.json({ message: 'successfully inserted ' });
                                                                             }
@@ -182,16 +196,15 @@ router.post('/addVitalSign/:cardNumber', async (req, res) => {
             }
 
         })
-
-
-
     } else {
         res.send("fill all fields...")
-
     }
-
-
 })
+
+
+
+
+
 
 
 
