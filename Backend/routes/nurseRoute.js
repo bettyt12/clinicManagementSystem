@@ -8,7 +8,7 @@ const db = require('../models/db')
 router.get('/getVitalSign/:cardNumber', (req, res) => {
 
     const cardNumber = req.params.cardNumber;
-    const sqlSelect = " SELECT p.* , b.bloodPressure , t.temperature , w.weight , h.height , pu.pulse , o.oxygenSaturation , n.nurseNote  FROM patient p INNER JOIN blood_pressure b ON p.cardNumber = b.cardNumber INNER JOIN temperature t ON b.id_blood_pressure = t.id_temperature INNER JOIN weight w ON b.id_blood_pressure = w.id_weight INNER JOIN height h ON b.id_blood_pressure = h.id_height INNER JOIN pulse pu ON p.cardNumber = pu.id_pulse INNER JOIN oxygen_saturation o ON b.id_blood_pressure = o.id_oxygen_saturation INNER JOIN nurse_note n ON b.id_blood_pressure = n.id_nurse_note WHERE p.cardNumber=?"
+    const sqlSelect = "    SELECT p.* , b.bloodPressure , t.temperature , w.weight , h.height , pu.pulse , o.oxygenSaturation , n.nurseNote  FROM patient p INNER JOIN blood_pressure b ON p.cardNumber = b.cardNumber INNER JOIN temperature t ON b.id_blood_pressure = t.id_temperature INNER JOIN weight w ON b.id_blood_pressure = w.id_weight INNER JOIN height h ON b.id_blood_pressure = h.id_height INNER JOIN pulse pu ON b.id_blood_pressure = pu.id_pulse INNER JOIN oxygen_saturation o ON b.id_blood_pressure = o.id_oxygen_saturation INNER JOIN nurse_note n ON b.id_blood_pressure = n.id_nurse_note  WHERE p.cardNumber=?"
     try {
         db.query(sqlSelect, [cardNumber], (err, result) => {
             if (err) {
@@ -30,7 +30,7 @@ router.get('/getVitalSign/:cardNumber', (req, res) => {
 router.get('/getVitalSign/:cardNumber/:date', (req, res) => {
     const date = req.params.date;
     const cardNumber = req.params.cardNumber;
-    const sqlSelect = " SELECT p.* , b.bloodPressure , t.temperature , w.weight , h.height , pu.pulse , o.oxygenSaturation , n.nurseNote  FROM patient p INNER JOIN blood_pressure b ON p.cardNumber = b.cardNumber INNER JOIN temperature t ON b.id_blood_pressure = t.id_temperature INNER JOIN weight w ON b.id_blood_pressure = w.id_weight INNER JOIN height h ON b.id_blood_pressure = h.id_height INNER JOIN pulse pu ON p.cardNumber = pu.id_pulse INNER JOIN oxygen_saturation o ON b.id_blood_pressure = o.id_oxygen_saturation INNER JOIN nurse_note n ON b.id_blood_pressure = n.id_nurse_note WHERE p.cardNumber=? AND b.date=?"
+    const sqlSelect = "    SELECT p.* , b.bloodPressure , t.temperature , w.weight , h.height , pu.pulse , o.oxygenSaturation , n.nurseNote  FROM patient p INNER JOIN blood_pressure b ON p.cardNumber = b.cardNumber INNER JOIN temperature t ON b.id_blood_pressure = t.id_temperature INNER JOIN weight w ON b.id_blood_pressure = w.id_weight INNER JOIN height h ON b.id_blood_pressure = h.id_height INNER JOIN pulse pu ON b.id_blood_pressure = pu.id_pulse INNER JOIN oxygen_saturation o ON b.id_blood_pressure = o.id_oxygen_saturation INNER JOIN nurse_note n ON b.id_blood_pressure = n.id_nurse_note  WHERE p.cardNumber=? AND b.date=?"
 
     try {
         db.query(sqlSelect, [cardNumber, date], (err, result) => {
@@ -53,7 +53,7 @@ router.get('/getVitalSign/:cardNumber/:date', (req, res) => {
 router.get('/getVitalSign/date/date/:dateValue', (req, res) => {
 
     const dateValue = req.params.dateValue;
-    const sqlSelect = " SELECT p.* , b.bloodPressure , t.temperature , w.weight , h.height , pu.pulse , o.oxygenSaturation , n.nurseNote  FROM patient p INNER JOIN blood_pressure b ON p.cardNumber = b.cardNumber INNER JOIN temperature t ON b.id_blood_pressure = t.id_temperature INNER JOIN weight w ON b.id_blood_pressure = w.id_weight INNER JOIN height h ON b.id_blood_pressure = h.id_height INNER JOIN pulse pu ON p.cardNumber = pu.id_pulse INNER JOIN oxygen_saturation o ON b.id_blood_pressure = o.id_oxygen_saturation INNER JOIN nurse_note n ON b.id_blood_pressure = n.id_nurse_note WHERE b.date=?"
+    const sqlSelect = "  SELECT p.* , b.bloodPressure , t.temperature , w.weight , h.height , pu.pulse , o.oxygenSaturation , n.nurseNote  FROM patient p INNER JOIN blood_pressure b ON p.cardNumber = b.cardNumber INNER JOIN temperature t ON b.id_blood_pressure = t.id_temperature INNER JOIN weight w ON b.id_blood_pressure = w.id_weight INNER JOIN height h ON b.id_blood_pressure = h.id_height INNER JOIN pulse pu ON b.id_blood_pressure = pu.id_pulse INNER JOIN oxygen_saturation o ON b.id_blood_pressure = o.id_oxygen_saturation INNER JOIN nurse_note n ON b.id_blood_pressure = n.id_nurse_note  WHERE b.date=?"
 
     try {
         db.query(sqlSelect, [dateValue], (err, result) => {
@@ -79,7 +79,7 @@ router.get('/getVitalSign/date/date/:dateValue', (req, res) => {
 //to get all  patients with its vital info
 router.get('/getVitalSign', (req, res) => {
 
-    const sqlSelect = " SELECT p.* , b.bloodPressure , t.temperature , w.weight , h.height , pu.pulse , o.oxygenSaturation , n.nurseNote  FROM patient p INNER JOIN blood_pressure b ON p.cardNumber = b.cardNumber INNER JOIN temperature t ON b.id_blood_pressure = t.id_temperature INNER JOIN weight w ON b.id_blood_pressure = w.id_weight INNER JOIN height h ON b.id_blood_pressure = h.id_height INNER JOIN pulse pu ON p.cardNumber = pu.id_pulse INNER JOIN oxygen_saturation o ON b.id_blood_pressure = o.id_oxygen_saturation INNER JOIN nurse_note n ON b.id_blood_pressure = n.id_nurse_note "
+    const sqlSelect = "SELECT p.* , b.bloodPressure , t.temperature , w.weight , h.height , pu.pulse , o.oxygenSaturation , n.nurseNote  FROM patient p INNER JOIN blood_pressure b ON p.cardNumber = b.cardNumber INNER JOIN temperature t ON b.id_blood_pressure = t.id_temperature INNER JOIN weight w ON b.id_blood_pressure = w.id_weight INNER JOIN height h ON b.id_blood_pressure = h.id_height INNER JOIN pulse pu ON b.id_blood_pressure = pu.id_pulse INNER JOIN oxygen_saturation o ON b.id_blood_pressure = o.id_oxygen_saturation INNER JOIN nurse_note n ON b.id_blood_pressure = n.id_nurse_note  "
     try {
         db.query(sqlSelect, (err, result) => {
             if (err) {
@@ -200,13 +200,6 @@ router.post('/addVitalSign/:cardNumber', async (req, res) => {
         res.send("fill all fields...")
     }
 })
-
-
-
-
-
-
-
 
 
 

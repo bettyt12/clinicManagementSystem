@@ -6,9 +6,9 @@ const db = require('../models/db')
 //to insert medication
 router.post("/addMedication/:cardNumber", (req, res) => {
     const cardNumber = req.params.cardNumber
-    const { medication, date } = req.body
-    const sqlInsert = "INSERT INTO `medication`( `cardNumber`, `medication`, `date`) VALUES (?,?,?)"
-    db.query(sqlInsert, [cardNumber, medication, date], (err, result) => {
+    const { medication, date ,doze,remark} = req.body
+    const sqlInsert = "INSERT INTO `medication`( `cardNumber`, `medication`,  `doze`, `remark`,`date`) VALUES (?,?,?,?,?)"
+    db.query(sqlInsert, [cardNumber, medication,doze,remark,date], (err, result) => {
         if (err) {
             res.send(err)
         } else {
@@ -21,10 +21,10 @@ router.post("/addMedication/:cardNumber", (req, res) => {
 
 //to get all meditation
 
-router.get('/getMeditation', (req, res) => {
+router.get('/getMedictation', (req, res) => {
 
 
-    const sqlSelect = " SELECT p.* ,  m.medication  FROM patient p INNER JOIN medication m ON p.cardNumber = m.cardNumber"
+    const sqlSelect = " SELECT p.* ,  m.*  FROM patient p INNER JOIN medication m ON p.cardNumber = m.cardNumber"
     db.query(sqlSelect, (err, result) => {
         if (err) {
             res.send(err)
@@ -43,7 +43,7 @@ router.get('/getMeditation/:cardNumber', (req, res) => {
 
     const cardNumber = req.params.cardNumber
 
-    const sqlSelect = " SELECT p.* ,  m.medication  FROM patient p INNER JOIN medication m ON p.cardNumber = m.cardNumber WHERE m.cardNumber=?"
+    const sqlSelect = " SELECT p.* ,  m.*  FROM patient p INNER JOIN medication m ON p.cardNumber = m.cardNumber WHERE m.cardNumber=?"
     db.query(sqlSelect, [cardNumber], (err, result) => {
         if (err) {
             res.send(err)
@@ -54,14 +54,15 @@ router.get('/getMeditation/:cardNumber', (req, res) => {
 })
 
 
-//to get meditation by date
+//to get meditation by date and cardNumber
 
-router.get('/getMeditation/date/:dateValue', (req, res) => {
+router.get('/getMeditation/:cardNumber/:dateValue', (req, res) => {
 
     const dateValue = req.params.dateValue
+    const cardNumber = req.params.cardNumber
 
-    const sqlSelect = " SELECT p.* ,  m.medication  FROM patient p INNER JOIN medication m ON p.cardNumber = m.cardNumber WHERE m.date=?"
-    db.query(sqlSelect, [dateValue], (err, result) => {
+    const sqlSelect = " SELECT p.* ,  m.*  FROM patient p INNER JOIN medication m ON p.cardNumber = m.cardNumber WHERE p.cardNumber=? AND m.date=?"
+    db.query(sqlSelect, [cardNumber,dateValue], (err, result) => {
         if (err) {
             res.send(err)
         } else {
@@ -69,9 +70,6 @@ router.get('/getMeditation/date/:dateValue', (req, res) => {
         }
     })
 })
-
-
-
 
 
 // to insert in to chef-compiant, hpi and progress-note table
@@ -164,14 +162,15 @@ router.get('/getVitals/:cardNumber', (req, res) => {
 
 })
 
-//to get patient by date patient vital
+//to get by date and cardnumber patient vital
 
-router.get('/getVitals/date/:date', (req, res) => {
+router.get('/getVitals/:cardNumber/:date', (req, res) => {
+      const cardNumber = req.params.cardNumber;
 
     const date = req.params.date;
-    const sqlSelect = "SELECT pa.*, pn.progressNote, cc.chefCompliant, h.hpi FROM patient pa INNER JOIN progress_note pn ON pa.cardNumber = pn.cardNumber INNER JOIN chef_compliant cc ON pn.id_progress_note = cc.id_chef_compliant INNER JOIN hpi h ON pn.id_progress_note = h.id_hpi WHERE pn.date=?"
+    const sqlSelect = "SELECT pa.*, pn.progressNote, cc.chefCompliant, h.hpi FROM patient pa INNER JOIN progress_note pn ON pa.cardNumber = pn.cardNumber INNER JOIN chef_compliant cc ON pn.id_progress_note = cc.id_chef_compliant INNER JOIN hpi h ON pn.id_progress_note = h.id_hpi WHERE pa.cardNumber= ? AND pn.date=?"
     try {
-        db.query(sqlSelect, [date], (err, result) => {
+        db.query(sqlSelect, [cardNumber,date], (err, result) => {
             if (err) {
                 res.send(err)
             }

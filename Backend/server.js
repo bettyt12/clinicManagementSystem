@@ -13,7 +13,7 @@ const adminRoute = require('./routes/adminRoute')
 const nurseRoute = require('./routes/nurseRoute')
 const loginRoute = require('./routes/loginRoute')
 const doctorRoute = require('./routes/doctorRoute')
-
+const appoitmentRoute=require('./routes/appoitmentRoute')
 
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -44,7 +44,7 @@ app.use('/admin',adminRoute )
 app.use('/nurse',nurseRoute)
 app.use('/login',loginRoute)
 app.use('/doctor',doctorRoute)
-
+app.use('/appoitment',appoitmentRoute)
 
 
 
