@@ -105,12 +105,12 @@ router.post('/addVitalSign/:cardNumber', async (req, res) => {
     const { date, nurseNote, height, bloodPressure, temperature, oxygenSaturation, pulse, weight } = req.body
 
     const sqlBloodPressure = "INSERT INTO `blood_pressure`(`cardNumber`, `bloodPressure`, `date`) VALUES (?,?,?)"
-    const sqlTemperature = "INSERT INTO `temperature`(`cardNumber`, `temperature`, `date`) VALUES (?,?,?)"
-    const sqlHeight = "INSERT INTO `height`( `cardNumber`, `height`, `data`) VALUES (?,?,?)"
-    const sqlWeight = "INSERT INTO `weight`(`cardNumber`, `weight`, `date`) VALUES (?,?,?)"
-    const sqlPulse = "INSERT INTO `pulse`(`cardNumber`, `pulse`, `data`) VALUES (?,?,?)"
-    const sqlOxyegenSaturation = "INSERT INTO `oxygen_saturation`(`cardNumber`, `oxygenSaturation`, `date`) VALUES (?,?,?)"
-    const sqlNurseNote = "INSERT INTO `nurse_note`(`cardNumber`, `nurseNote`, `date`) VALUES (?,?,?)"
+    const sqlTemperature = "INSERT INTO `temperature`(`id_temperature`,`cardNumber`, `temperature`, `date`) VALUES (?,?,?,?)"
+    const sqlHeight = "INSERT INTO `height`(`id_height`, `cardNumber`, `height`, `data`) VALUES (?,?,?,?)"
+    const sqlWeight = "INSERT INTO `weight`(`id_weight`,`cardNumber`, `weight`, `date`) VALUES (?,?,?,?)"
+    const sqlPulse = "INSERT INTO `pulse`(`id_pulse`,`cardNumber`, `pulse`, `data`) VALUES (?,?,?,?)"
+    const sqlOxyegenSaturation = "INSERT INTO `oxygen_saturation`(`id_oxygen_saturation`,`cardNumber`, `oxygenSaturation`, `date`) VALUES (?,?,?,?)"
+    const sqlNurseNote = "INSERT INTO `nurse_note`(`id_nurse_note`,`cardNumber`, `nurseNote`, `date`) VALUES (?,?,?,?)"
 
     if (cardNumber != null && date != null && nurseNote != null && bloodPressure != null && temperature != null && oxygenSaturation != null && pulse != null && weight != null && height != null) {
 
@@ -127,42 +127,43 @@ router.post('/addVitalSign/:cardNumber', async (req, res) => {
                         });
                     }
                     else {
-                        db.query(sqlTemperature, [cardNumber, temperature, date], (err, result) => {
+                        const commonId= result.insertId
+                        db.query(sqlTemperature, [commonId,cardNumber, temperature, date], (err, result) => {
                             if (err) {
                                 return db.rollback(function () {
                                     res.send('error in temperature feild: ');
                                 });
                             }
                             else {
-                                db.query(sqlHeight, [cardNumber, height, date], (err, result) => {
+                                db.query(sqlHeight, [commonId,cardNumber, height, date], (err, result) => {
                                     if (err) {
                                         return db.rollback(function () {
                                             res.send('error in height feild: ');
                                         });
                                     }
                                     else {
-                                        db.query(sqlWeight, [cardNumber, weight, date], (err, result) => {
+                                        db.query(sqlWeight, [commonId,cardNumber, weight, date], (err, result) => {
                                             if (err) {
                                                 return db.rollback(function () {
                                                     res.send('error in weight feild: ');
                                                 });
                                             }
                                             else {
-                                                db.query(sqlPulse, [cardNumber, pulse, date], (err, result) => {
+                                                db.query(sqlPulse, [commonId,cardNumber, pulse, date], (err, result) => {
                                                     if (err) {
                                                         return db.rollback(function () {
                                                             res.send('error in pulse feild: ');
                                                         });
                                                     }
                                                     else {
-                                                        db.query(sqlOxyegenSaturation, [cardNumber, oxygenSaturation, date], (err, result) => {
+                                                        db.query(sqlOxyegenSaturation, [commonId,cardNumber, oxygenSaturation, date], (err, result) => {
                                                             if (err) {
                                                                 return db.rollback(function () {
                                                                     res.send('error in oxyegen saturation feild: ');
                                                                 });
                                                             }
                                                             else {
-                                                                db.query(sqlNurseNote, [cardNumber, nurseNote, date], (err, result) => {
+                                                                db.query(sqlNurseNote, [commonId,cardNumber, nurseNote, date], (err, result) => {
                                                                     if (err) {
                                                                         return db.rollback(function () {
                                                                             res.send('error in nurse note feild: ');
@@ -171,7 +172,7 @@ router.post('/addVitalSign/:cardNumber', async (req, res) => {
                                                                     else {
                                                                         db.commit(function (err) {
                                                                             if (err) {
-                                                                                return connection.rollback(function () {
+                                                                                return db.rollback(function () {
                                                                                     res.send('error in commit: ');
                                                                                 });
                                                                             } else {
@@ -295,8 +296,8 @@ router.post('/familyPlan/:cardNumber', async (req, res) => {
                 res.send('error starting transaction: ');
                 return;
             } else {
-                db.query(sqlHIVTestOfferd, [cardNumber, HIVTestOfferd, date], (error, result) => {
-                    if (error) {
+                db.query(sqlHIVTestOfferd, [cardNumber, HIVTestOfferd, date], (err, result) => {
+                    if (err) {
                         return db.rollback(function () {
                             res.send('error in HIVTestOfferd field: ');
                         });
@@ -309,7 +310,7 @@ router.post('/familyPlan/:cardNumber', async (req, res) => {
                                     res.send('error in HIVTestPerformed feild: ');
                                 });
                             }
-                            else {
+                            else { 
                                 db.query(sqlHIVTestResult, [tablesIdValue, cardNumber, HIVTestResult, date], (err, result) => {
                                     if (err) {
                                         return db.rollback(function () {
@@ -384,7 +385,7 @@ router.post('/familyPlan/:cardNumber', async (req, res) => {
 
                                                                                                                 db.commit(function (err) {
                                                                                                                     if (err) {
-                                                                                                                        return connection.rollback(function () {
+                                                                                                                        return db.rollback(function () {
                                                                                                                             res.send('error in commit: ');
                                                                                                                         });
                                                                                                                     } else {
@@ -438,7 +439,6 @@ router.post('/familyPlan/:cardNumber', async (req, res) => {
 
 
 //to get all  family plan 
-
 router.get('/familyPlan', (req, res) => {
 
     const sqlSelect = "SELECT p.*,b.HIVTestOfferd,COP.ContraceptiveProvided,HSC.HIVSpecificCounslingMethodOfferd,HTP.HIVTestPerformed,HTR.HIVTestResult,VSFW.VIAScreenigForWomenAge3049,VTR.VIATestResult,CTFP.CryotherapyGivenForPC,TT.TTStatusChecked,CIU.ContradictionForIUCD,PMS.PeramnetMethodSelected FROM patient p INNER JOIN hiv_test_offerd b ON p.cardNumber = b.cardNumber INNER JOIN contraceptiveprovided COP ON b.id_HIV_Test_Offerd = COP.id_Contraceptive_Provided INNER JOIN hivspecificcounslingmethodofferd HSC ON b.id_HIV_Test_Offerd = HSC.id_HIV_Specific_Counsling_Method_Offerd INNER JOIN hivtestperformed HTP ON b.id_HIV_Test_Offerd = HTP.id_HIV_Test_Performed INNER JOIN hivtestresult HTR ON b.id_HIV_Test_Offerd = HTR.id_HIVTestResult INNER JOIN viascreenigforwomenage3049 VSFW ON b.id_HIV_Test_Offerd = VSFW.id_VIA_Screenig_For_Women_Age_30_49 INNER JOIN viatestresult VTR ON b.id_HIV_Test_Offerd = VTR.id_VIATestResult INNER JOIN cryotherapygivenforpc CTFP ON b.id_HIV_Test_Offerd=CTFP.id_Cryotherapy_Given_For_PC INNER JOIN ttstatuschecked TT ON b.id_HIV_Test_Offerd=TT.id_TT_Status_Checked INNER JOIN contradictionforiucd CIU ON b.id_HIV_Test_Offerd=CIU.id_Contradiction_For_IUCD INNER JOIN peramnetmethodselected PMS ON b.id_HIV_Test_Offerd=PMS.id_Peramnet_Method_Selected INNER JOIN family_plan_remark FPR ON b.id_HIV_Test_Offerd=FPR.id_Remark "
@@ -468,7 +468,7 @@ router.get('/familyPlan/:cardNumber', (req, res) => {
         db.query(sqlSelect, [cardNumber], (err, result) => {
             if (err) {
                 res.send(err)
-            }
+            } 
             else {
                 res.send(result)
             }
@@ -479,6 +479,7 @@ router.get('/familyPlan/:cardNumber', (req, res) => {
     }
 
 })
+
 
 
 
