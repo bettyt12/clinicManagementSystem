@@ -16,14 +16,15 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import TableChartIcon from "@mui/icons-material/TableChart";
 import Face3Icon from '@mui/icons-material/Face3';
 
 import { useNavigate } from "react-router-dom";
 
 import Button from "@mui/material/Button"
 
-const drawerWidth = 220;
+const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -128,7 +129,7 @@ export default function Sidebar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-            Tsedal Clinic
+            Tsedal OBGYN Clinic
           </Typography>
 
 
@@ -167,10 +168,11 @@ export default function Sidebar() {
                 </ListItemIcon>
                 <ListItemText primary="Reception" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
+              
             </ListItem>
           
           {/* Second Side*/}
-            <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => (navigate("/users"))} >
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => (navigate("/patientrecord"))} >
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -185,14 +187,14 @@ export default function Sidebar() {
                     justifyContent: 'center',
                   }}
                 >
-                  <InboxIcon />
+                  <TableChartIcon />
                 </ListItemIcon>
-                <ListItemText primary="Users" sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="Patient Record Table" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
 
             {/* Third Side*/}
-            <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => (navigate("/products"))}>
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => (navigate("/addPatient"))}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -207,9 +209,9 @@ export default function Sidebar() {
                     justifyContent: 'center',
                   }}
                 >
-                  <InboxIcon />
+                  <AddCircleOutlineIcon />
                 </ListItemIcon>
-                <ListItemText primary="Products" sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="Add Patient" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
         </List>
