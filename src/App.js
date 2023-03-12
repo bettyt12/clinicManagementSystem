@@ -8,6 +8,8 @@ import Reception from "./pages/Reception/Reception";
 import PatientRecordTable from "./pages/Reception/PatientRecordTable";
 import ViewPatient from "./pages/Reception/ViewPatient";
 import AddPatient from "./pages/Reception/AddPatient";
+import Dashboard from "./pages/Admin/Dashboard/Dashboard";
+import Staff from "./pages/Admin/Staff/Staff";
 
 function App() {
   return (
@@ -20,10 +22,13 @@ function App() {
             <Route>
               <Route path="/patientrecord" exact element={<PatientRecordTable />} />
               <Route path="viewPatient/:id" element={<ViewPatient />} />
-              <Route
-                path="addPatient"
-                element={<AddPatient />}
-              />
+              <Route path="addPatient" element={<AddPatient />} />
+            </Route>
+
+              {/* ADMIN */}
+              <Route>
+                <Route path="/dashboard" index element={<Dashboard />} />
+                <Route path="/staff" index element={<Staff />} />
               </Route>
           </Routes>
       </BrowserRouter>

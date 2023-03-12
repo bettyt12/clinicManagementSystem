@@ -54,7 +54,7 @@ const AddPatient = () => {
             <Grid container spacing={2}>
 
               {/* Card Num*/}
-              <Grid item xs={12}>
+              <Grid item xs={12} sx={{ml: 5}}>
                 <TextField
                   autoComplete="cardnumber"
                   name="Card Number"
@@ -67,7 +67,7 @@ const AddPatient = () => {
               </Grid>
 
               {/* Names */}
-              <Grid item xs={12} sm={4}>
+              <Grid item xs={12} sm={4} sx={{ml: 5}}>
                 <TextField
                   required
                   fullWidth
@@ -78,7 +78,7 @@ const AddPatient = () => {
                 />
               </Grid>
 
-              <Grid item xs={12} sm={4}>
+              <Grid item xs={12} sm={4} sx={{ml: 5}}>
                 <TextField
                   required
                   fullWidth
@@ -89,7 +89,7 @@ const AddPatient = () => {
                 />
               </Grid>
 
-              <Grid item xs={12} sm={4}>
+              <Grid item xs={12} sm={4} sx={{ml: 5}}>
                 <TextField
                   required
                   fullWidth
@@ -100,18 +100,19 @@ const AddPatient = () => {
                 />
               </Grid>
 
-              <Grid item xs={12} sm={4}>
+              <Grid item xs={12} sm={4} sx={{ml: 5}}>
                 <TextField sx={{ minWidth: 120 }}
                   required
                   fullWidth
                   id="age"
                   label="Age"
+                  type="number"
                   name="age"
                   autoComplete="age"
                 />
               </Grid>
 
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} sx={{ml: 5}}>
                 <FormControl sx={{ minWidth: 200 }}>
                   <InputLabel id="demo-simple-select-helper-label">Gender</InputLabel>
                   <Select
@@ -128,7 +129,7 @@ const AddPatient = () => {
               </Grid>
 
             {/* Contact Info */}
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={2} sx={{ml: 5}}>
                 <TextField
                   required
                   fullWidth
@@ -140,7 +141,7 @@ const AddPatient = () => {
                 />
               </Grid>
 
-              <Grid item xs={12} sm={4}>
+              <Grid item xs={12} sm={4} sx={{ml: 5}}>
                 <TextField
                   required
                   fullWidth
@@ -152,7 +153,7 @@ const AddPatient = () => {
                 />
               </Grid>
 
-              <Grid item xs={12} sm={4}>
+              <Grid item xs={12} sm={4} sx={{ml: 5}}>
                 <TextField
                   required
                   fullWidth
@@ -164,7 +165,7 @@ const AddPatient = () => {
                 />
               </Grid>
 
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} sx={{ml: 5}}>
                 <FormControl sx={{ minWidth: 200 }}>
                   <InputLabel id="demo-simple-select-helper-label">Card Type</InputLabel>
                   <Select
@@ -185,7 +186,7 @@ const AddPatient = () => {
             <Button
               type="submit"
               variant="contained"
-              sx={{ mt: 3, mb: 3, }}
+              sx={{ mt: 3, mb: 3, ml: 5}}
             >
               Add Patient
             </Button>

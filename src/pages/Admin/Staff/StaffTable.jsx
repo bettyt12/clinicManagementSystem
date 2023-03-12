@@ -2,14 +2,13 @@ import React, { useState } from 'react'
 import { Link } from "react-router-dom";
 
 import { DataGrid } from '@mui/x-data-grid';
-import Sidebar from "../../components/Sidebar/Sidebar";
 import Box from '@mui/material/Box';
 import Button from "@mui/material/Button";
 
-import { userRows } from "../../dummyData";
+import { userRows } from "../../../dummyData";
 
-const PatientRecordTable = () => {
-
+const StaffTable = () => {
+///Add Staff Data to dummy data named staffrows
     const [data] = useState(userRows);
     
     const columns = [
@@ -67,8 +66,8 @@ const PatientRecordTable = () => {
 
   return (
     <Box flex={4} p={{ xs: 0, md: 2 }} sx={{ml:7}}>
-        <Sidebar />
-          <Box component="main" sx={{ flexGrow: 1, p:2, mt: 0 }}>
+        
+          <Box component="main" sx={{ flexGrow: 1, p:2 }}>
             <DataGrid
               rows={data}
               disableSelectionOnClick
@@ -81,4 +80,4 @@ const PatientRecordTable = () => {
   )
 }
 
-export default PatientRecordTable
+export default StaffTable;

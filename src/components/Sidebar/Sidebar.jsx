@@ -20,6 +20,9 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import TableChartIcon from "@mui/icons-material/TableChart";
 import Face3Icon from '@mui/icons-material/Face3';
 
+import { Dashboard } from '@mui/icons-material';
+import { GroupOutlined } from '@mui/icons-material';
+
 import { useNavigate } from "react-router-dom";
 
 import Button from "@mui/material/Button"
@@ -214,6 +217,51 @@ export default function Sidebar() {
                 <ListItemText primary="Add Patient" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
+
+            {/* Fourth Side - ADMIN */}
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => (navigate("/dashboard"))}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Dashboard />
+                </ListItemIcon>
+                <ListItemText primary="Dashboard" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+
+            {/* Fifth Side - ADMIN - STAFF */}
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => (navigate("/staff"))}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <GroupOutlined />
+                </ListItemIcon>
+                <ListItemText primary="Staff" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+
         </List>
         <Divider />
         <List>
