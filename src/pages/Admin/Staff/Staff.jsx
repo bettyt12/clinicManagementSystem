@@ -11,6 +11,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
+import StaffTable from './StaffTable';
 
 const Staff = () => {
 
@@ -146,7 +147,7 @@ const Staff = () => {
                   >
                     <MenuItem>Doctor</MenuItem>
                     <MenuItem>Nurse</MenuItem>
-                    <MenuItem>Laboratory</MenuItem>
+                    <MenuItem>Lab Technician</MenuItem>
                     <MenuItem>Reception</MenuItem>
                   </Select>
                 </FormControl>
@@ -166,6 +167,7 @@ const Staff = () => {
 
       <div>
         {/* Staff Table */}
+        <StaffTable />
       </div>
     </div>
   )

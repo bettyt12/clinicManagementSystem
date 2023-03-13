@@ -157,6 +157,84 @@ export const userData = [
     },
   ];
 
+  //Staff Rows
+
+  export const staffRows = [
+    {
+      id: 1,
+      idNum: 111,
+      firstName: "Jon",
+      lastName: "Snow",
+      userName: "johnnysnow",
+      position: "Doctor"
+    },
+    {
+      id: 2,
+      idNum: 12,
+      firstName: "Abebe",
+      lastName: "Kebede",
+      userName: "Abebe1",
+      position: "Doctor"
+    },
+    {
+      id: 3,
+      idNum: 13,
+      firstName: "Aster",
+      lastName: "Alemu",
+      userName: "Aster1",
+      position: "Doctor"
+    },
+    {
+      id: 4,
+      idNum: 14,
+      firstName: "Mekdes",
+      lastName: "Asfaw",
+      userName: "mekdi1",
+      position: "Nurse"
+    },
+    {
+      id: 5,
+      idNum: 11,
+      firstName: "Hayat",
+      lastName: "Seid",
+      userName: "hayu2",
+      position: "Lab Technician"
+    },
+    {
+      id: 6,
+      idNum: 16,
+      firstName: "Tesfa",
+      lastName: "Ayele",
+      userName: "tesfa1",
+      position: "Reception"
+    },
+    {
+      id: 7,
+      idNum: 17,
+      firstName: "Sara",
+      lastName: "Ayele",
+      userName: "sara1",
+      position: "Doctor"
+    },
+    {
+      id: 8,
+      idNum: 18,
+      firstName: "Kebede",
+      lastName: "Lemma",
+      userName: "kebe3",
+      position: "Lab Technician"
+    },
+    {
+      id: 9,
+      idNum: 19,
+      firstName: "Betty",
+      lastName: "T",
+      userName: "betty01",
+      position: "Doctor"
+    },
+  ];
+
+  //product Rows
   export const productRows = [
     {
       id: 1,

@@ -2,7 +2,7 @@ import React from 'react'
 import { Box, Typography } from "@mui/material";
 import { green, grey } from '@mui/material/colors';
 
-const StatBox = ({ title, subtitle, icon, increase }) => {
+const StatBox = ({ title, subtitle, icon }) => {
   return (
     <div>
         <Box width="100%" sx={{ml: 5}}>
@@ -22,14 +22,6 @@ const StatBox = ({ title, subtitle, icon, increase }) => {
             <Box display="flex" justifyContent="space-between" mt="2px">
               <Typography variant="h5" sx={{ color: green }}>
                 {subtitle}
-              </Typography>
-        
-              <Typography
-                variant="h5"
-                fontStyle="italic"
-                sx={{ color: green }}
-              >
-                {increase}
               </Typography>
             </Box>
         </Box>

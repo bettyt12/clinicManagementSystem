@@ -5,14 +5,14 @@ import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
 import Button from "@mui/material/Button";
 
-import { userRows } from "../../../dummyData";
+import { staffRows } from "../../../dummyData"
 
 const StaffTable = () => {
 ///Add Staff Data to dummy data named staffrows
-    const [data] = useState(userRows);
+    const [data] = useState(staffRows);
     
     const columns = [
-      { field: "cardNum", headerName: "Card Number", width: 80 },
+      { field: "idNum", headerName: "ID Number", width: 110 },
       {
         field: "firstName",
         headerName: "First Name",
@@ -23,23 +23,25 @@ const StaffTable = () => {
         headerName: "Last Name",
         width: 150,
       },
-      { field: "age", headerName: "Age", width: 80 },
-      { field: "contact", headerName: "Contact", width: 150 },
       {
-        field: "physician",
-        headerName: "Physician",
+        field: "userName",
+        headerName: "User Name",
         width: 150,
       },
-      { field: "spot", headerName: "Spot", width: 150 },
+      {
+        field: "position",
+        headerName: "Position",
+        width: 150,
+      },
   
       {
         field: "action",
         headerName: "Action",
-        width: 250,
+        width: 150,
         renderCell: (params) => {
           return (
             <>
-              <Link to={"/viewPatient/" + params.row.id}>
+              <Link> {/* to={"/viewStaff/" + params.row.id}*/}
                 <Button
                   type="submit"
                   fullWidth
@@ -50,14 +52,6 @@ const StaffTable = () => {
                 </Button>
               </Link>
 
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2, ml: 3 }}
-              >
-                Admit 
-              </Button>
             </>
           );
         },

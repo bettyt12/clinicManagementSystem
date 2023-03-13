@@ -117,7 +117,7 @@ export default function Sidebar() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar position="fixed" style={{background: "green"}} open={open}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -259,6 +259,116 @@ export default function Sidebar() {
                   <GroupOutlined />
                 </ListItemIcon>
                 <ListItemText primary="Staff" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+
+            {/* ADMIN - View Patient Record */}
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => (navigate("/patientrecord"))} >
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <TableChartIcon />
+                </ListItemIcon>
+                <ListItemText primary="Patient Record Table" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+
+            {/* NURSE - View Patient Record */}
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => (navigate("/patientrecord"))} >
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <TableChartIcon />
+                </ListItemIcon>
+                <ListItemText primary="Patient Record Table" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+
+            {/* NURSE - Add New Born */}
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => (navigate("/addNewBorn"))} >
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <TableChartIcon />
+                </ListItemIcon>
+                <ListItemText primary="Add New Born" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+
+            {/* NURSE - Add Family Plan */}
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => (navigate("/addFamilyPlan"))} >
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <TableChartIcon />
+                </ListItemIcon>
+                <ListItemText primary="Add Family Plan" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+
+            {/* NURSE - Add Vital Sign */}
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => (navigate("/addVitalSign"))} >
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <TableChartIcon />
+                </ListItemIcon>
+                <ListItemText primary="Add Vital Sign" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
 

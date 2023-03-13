@@ -10,6 +10,10 @@ import ViewPatient from "./pages/Reception/ViewPatient";
 import AddPatient from "./pages/Reception/AddPatient";
 import Dashboard from "./pages/Admin/Dashboard/Dashboard";
 import Staff from "./pages/Admin/Staff/Staff";
+import AddNewBorn from "./pages/Nurse/AddNewBorn";
+import AdmittedPatientList from "./pages/Nurse/AdmittedPatientList";
+import AddFamilyPlan from "./pages/Nurse/AddFamilyPlan";
+import AddVitalSign from "./pages/Nurse/AddVitalSign"
 
 function App() {
   return (
@@ -27,8 +31,16 @@ function App() {
 
               {/* ADMIN */}
               <Route>
-                <Route path="/dashboard" index element={<Dashboard />} />
-                <Route path="/staff" index element={<Staff />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/staff" element={<Staff />} />
+              </Route>
+
+              {/* NURSE */}
+              <Route>
+                <Route path="/addNewBorn" index element={<AddNewBorn />} />
+                <Route path="/admittedPatientList" index element={<AdmittedPatientList />} />
+                <Route path="/addFamilyPlan" index element={<AddFamilyPlan />} />
+                <Route path="/addVitalSign" index element={<AddVitalSign />} />
               </Route>
           </Routes>
       </BrowserRouter>
