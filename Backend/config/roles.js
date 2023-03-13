@@ -6,4 +6,4 @@ const ROLES_LIST = {
     doctor: 'doctor',
     laboratory: 'labratory'
 }
-module.exports = ROLES_LIST 
+module.exports = ROLES_LIST
