@@ -16,12 +16,13 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import TableChartIcon from "@mui/icons-material/TableChart";
 import Face3Icon from '@mui/icons-material/Face3';
-
-import { Dashboard } from '@mui/icons-material';
-import { GroupOutlined } from '@mui/icons-material';
+import Person3Icon from "@mui/icons-material/Person3"
+import { ChildFriendly, Dashboard, FamilyRestroom, MedicalServices } from '@mui/icons-material';
+import PeopleIcon from "@mui/icons-material/People"
 
 import { useNavigate } from "react-router-dom";
 
@@ -135,7 +136,6 @@ export default function Sidebar() {
             Tsedal OBGYN Clinic
           </Typography>
 
-
           <Button 
               variant="contained"
               onClick={handleClick}>Login
@@ -217,6 +217,7 @@ export default function Sidebar() {
                 <ListItemText primary="Add Patient" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
+            <Divider />
 
             {/* Fourth Side - ADMIN */}
             <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => (navigate("/dashboard"))}>
@@ -256,7 +257,7 @@ export default function Sidebar() {
                     justifyContent: 'center',
                   }}
                 >
-                  <GroupOutlined />
+                  <PeopleIcon />
                 </ListItemIcon>
                 <ListItemText primary="Staff" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
@@ -283,6 +284,7 @@ export default function Sidebar() {
                 <ListItemText primary="Patient Record Table" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
+            <Divider />
 
             {/* NURSE - View Patient Record */}
             <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => (navigate("/patientrecord"))} >
@@ -300,7 +302,7 @@ export default function Sidebar() {
                     justifyContent: 'center',
                   }}
                 >
-                  <TableChartIcon />
+                  <Person3Icon />
                 </ListItemIcon>
                 <ListItemText primary="Patient Record Table" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
@@ -322,7 +324,7 @@ export default function Sidebar() {
                     justifyContent: 'center',
                   }}
                 >
-                  <TableChartIcon />
+                  <ChildFriendly />
                 </ListItemIcon>
                 <ListItemText primary="Add New Born" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
@@ -344,7 +346,7 @@ export default function Sidebar() {
                     justifyContent: 'center',
                   }}
                 >
-                  <TableChartIcon />
+                  <FamilyRestroom />
                 </ListItemIcon>
                 <ListItemText primary="Add Family Plan" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
@@ -366,7 +368,7 @@ export default function Sidebar() {
                     justifyContent: 'center',
                   }}
                 >
-                  <TableChartIcon />
+                  <MedicalServices />
                 </ListItemIcon>
                 <ListItemText primary="Add Vital Sign" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>

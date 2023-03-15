@@ -28,10 +28,10 @@ const AddPatient = () => {
   const handleType = (event) => {
     setType(event.target.value);
   };
+
   return (
     <ThemeProvider theme={theme}>
-
-      <Box flex={4} p={{ xs: 1, md: 2 }} sx={{ml:7}}>
+      <Box flex={4} p={{ xs: 1, md: 2 }} sx={{ ml:7 }}>
         <Sidebar />
       </Box>
 
