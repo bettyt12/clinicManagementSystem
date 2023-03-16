@@ -11,7 +11,7 @@ import AddPatient from "./pages/Reception/AddPatient";
 import Dashboard from "./pages/Admin/Dashboard/Dashboard";
 import Staff from "./pages/Admin/Staff/Staff";
 import AddNewBorn from "./pages/Nurse/AddNewBorn";
-import AdmittedPatientList from "./pages/Nurse/AdmittedPatientList";
+//import AdmittedPatientList from "./pages/Doctor/AdmittedPatientList";
 import AddFamilyPlan from "./pages/Nurse/AddFamilyPlan";
 import AddVitalSign from "./pages/Nurse/AddVitalSign"
 
@@ -38,10 +38,17 @@ function App() {
               {/* NURSE */}
               <Route>
                 <Route path="/addNewBorn" index element={<AddNewBorn />} />
-                <Route path="/admittedPatientList" index element={<AdmittedPatientList />} />
                 <Route path="/addFamilyPlan" index element={<AddFamilyPlan />} />
                 <Route path="/addVitalSign" index element={<AddVitalSign />} />
               </Route>
+
+              {/* DOCTOR 
+              <Route>
+              <Route path="/patientrecord" exact element={<PatientRecordTable />} />
+              <Route path="viewPatient/:id" element={<ViewPatient />} />
+              <Route path="addPatient" element={<AddPatient />} />
+            </Route>
+            */}
           </Routes>
       </BrowserRouter>
     </>
