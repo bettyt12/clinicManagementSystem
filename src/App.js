@@ -10,10 +10,18 @@ import ViewPatient from "./pages/Reception/ViewPatient";
 import AddPatient from "./pages/Reception/AddPatient";
 import Dashboard from "./pages/Admin/Dashboard/Dashboard";
 import Staff from "./pages/Admin/Staff/Staff";
+
 import AddNewBorn from "./pages/Nurse/AddNewBorn";
-import AdmittedPatientList from "./pages/Nurse/AdmittedPatientList";
 import AddFamilyPlan from "./pages/Nurse/AddFamilyPlan";
-import AddVitalSign from "./pages/Nurse/AddVitalSign"
+import AddVitalSign from "./pages/Nurse/AddVitalSign";
+
+import LabReport from "./pages/Laboratory/LabReport";
+import LabInvestigation from "./pages/Laboratory/LabInvestigation";
+import LabRequest from "./pages/Laboratory/LabRequest";
+
+import PatientRecord from "./pages/Doctor/PatientRecord";
+import DoctorLabRequest from "./pages/Doctor/DoctorLabRequest";
+import ViewDoctorPatient from "./pages/Doctor/ViewDoctorPatient";
 
 function App() {
   return (
@@ -38,10 +46,24 @@ function App() {
               {/* NURSE */}
               <Route>
                 <Route path="/addNewBorn" index element={<AddNewBorn />} />
-                <Route path="/admittedPatientList" index element={<AdmittedPatientList />} />
                 <Route path="/addFamilyPlan" index element={<AddFamilyPlan />} />
                 <Route path="/addVitalSign" index element={<AddVitalSign />} />
               </Route>
+
+              {/* DOCTOR */}
+              <Route>
+              <Route path="/doctorPatientRecord" exact element={<PatientRecord />} />
+              <Route path="viewdoctorPatient/:id" element={<ViewDoctorPatient />} />
+              <Route path="/doctorLabRequest" index element={<DoctorLabRequest />} />
+            </Route>
+
+              {/* Laboratory */}
+              <Route>
+                <Route path="/labReport" index element={<LabReport />} />
+                <Route path="/labResults" index element={<LabRequest />} />
+                <Route path="/labInvestigation" index element={<LabInvestigation/>} />
+              </Route>
+ 
           </Routes>
       </BrowserRouter>
     </>
