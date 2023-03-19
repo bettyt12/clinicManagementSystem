@@ -21,7 +21,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import TableChartIcon from "@mui/icons-material/TableChart";
 import Face3Icon from '@mui/icons-material/Face3';
 import Person3Icon from "@mui/icons-material/Person3"
-import { ChildFriendly, Dashboard, FamilyRestroom, MedicalServices } from '@mui/icons-material';
+import { ChildFriendly, Dashboard, FamilyRestroom, FindInPageSharp, MedicalServices, Report, Summarize } from '@mui/icons-material';
 import PeopleIcon from "@mui/icons-material/People"
 
 import { useNavigate } from "react-router-dom";
@@ -371,6 +371,120 @@ export default function Sidebar() {
                   <MedicalServices />
                 </ListItemIcon>
                 <ListItemText primary="Add Vital Sign" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+
+            <Divider />
+
+            {/* Doctor - Record  */}
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => (navigate("/doctorPatientRecord"))} >
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <FamilyRestroom />
+                </ListItemIcon>
+                <ListItemText primary="Doctor Patient Record" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+
+            {/* Doctor - Lab Request  */}
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => (navigate("/doctorLabRequest"))} >
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Summarize />
+                </ListItemIcon>
+                <ListItemText primary="Doctor Lab Request" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+
+            <Divider />
+
+            {/* Laboratory - Lab Report */}
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => (navigate("/labReport"))} >
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Report />
+                </ListItemIcon>
+                <ListItemText primary="Add Lab Report" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+
+            {/* Laboratory - Lab Results */}
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => (navigate("/labResults"))} >
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Summarize />
+                </ListItemIcon>
+                <ListItemText primary="Add Lab Result" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+
+            {/* Laboratory - Lab Investigation */}
+            <ListItem  disablePadding sx={{ display: 'block' }} onClick={() => (navigate("/labInvestigation"))} >
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <FindInPageSharp />
+                </ListItemIcon>
+                <ListItemText primary="Add Lab Investigation" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
 

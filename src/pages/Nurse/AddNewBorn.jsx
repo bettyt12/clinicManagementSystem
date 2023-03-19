@@ -50,7 +50,7 @@ const AddNewBorn = () => {
         <Sidebar />
       </Box>
 
-      <Grid container spacing={2}>
+      <Grid container item xs={12} sm={8}>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <Box
@@ -68,8 +68,6 @@ const AddNewBorn = () => {
 
                     {/* Form*/}
             <Box component="form" noValidate sx={{ mt: 1, ml: 3 }}>
-
-            <Grid item xs={12} sm={8} >
               <TextField
                 margin="normal"
                 required
@@ -80,7 +78,6 @@ const AddNewBorn = () => {
                 autoComplete="cardNumber"
                 autoFocus
               />
-            </Grid>
               <TextField
                 margin="normal"
                 required
