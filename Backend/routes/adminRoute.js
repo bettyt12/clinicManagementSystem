@@ -8,8 +8,6 @@ const bcrypt = require('bcrypt');// to encrypt the password
 // const authorize = require('../middleware/authorize')
 
 
-
-
 //get all staff
 
 //if we want authorize and authenticate 
@@ -38,6 +36,7 @@ const bcrypt = require('bcrypt');// to encrypt the password
 router.post('/addStaff', async (req, res) => {
 
     const { satffFirstName, staffLastName, password, userName, position, phoneNumber } = req.body
+    
     const checkUsername = "SELECT * FROM `staff` WHERE userName=?"
     const sqlInsert = "INSERT INTO `staff`( `satffFirstName`, `staffLastName`, `password`, `userName`, `position`, `phoneNumber`) VALUES (?,?,?,?,?,?)"
 

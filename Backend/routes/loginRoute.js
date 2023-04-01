@@ -21,13 +21,13 @@ router.post('/', (req, res) => {
         }
 
         else if (result == '') {
-            return res.status(401).json({ message: 'Username  is not found' });
+            return res.status(401).json({ message: 'username or password incorrect' });
 
         }
         else {
             bcrypt.compare(password, result[0].password).then((match) => {
                 if (!match) {
-                    return res.status(401).json({ message: ' password is incorrect' });
+                    return res.status(401).json({ message: ' username or password incorrect' });
 
                 }
                 else {

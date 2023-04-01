@@ -6,7 +6,7 @@ const authenticate = (req, res, next) => {
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
-        return res.status(401).json({ message: 'No Authorization ' });
+        return res.status(401).json({ message: 'error happened' });
     }
 
     const [bearer, token] = authHeader.split(' ');
