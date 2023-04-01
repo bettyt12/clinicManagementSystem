@@ -17,7 +17,7 @@ router.post('/', (req, res) => {
             res.json({ message: "data inserted successfully" })
     })
 
-})
+}) 
 
 
 //to get all appoitments
