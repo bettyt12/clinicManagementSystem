@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require("bcrypt")
 const db = require('../models/db');
 const dotenv = require('dotenv')
-
+const authenticate=require('../middleware/authenticate')
 dotenv.config();
 
 // Login route
@@ -53,6 +53,9 @@ router.post('/', (req, res) => {
 
 })
 
+router.get('/',authenticate, (req, res) => {
+    res.json({token:req.user})
+})
 
 
 
