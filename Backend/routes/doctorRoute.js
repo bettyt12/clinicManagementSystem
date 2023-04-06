@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require('../models/db')
-
+const authenticate=require('../middleware/authenticate')
 
 //to insert medication
 router.post("/addMedication/:cardNumber", (req, res) => {
