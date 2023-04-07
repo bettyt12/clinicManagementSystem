@@ -1,7 +1,11 @@
 const express = require("express");
+var cookieParser = require('cookie-parser')
+
 var bodyParser = require('body-parser')
 const cors = require("cors");
 const app = express();
+app.use(cookieParser());
+
 const secret = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 var corsOptions = {
 
@@ -42,7 +46,7 @@ app.get("/", (req, res) => {
 app.use('/reception',receptionRoute )
 app.use('/admin',adminRoute )
 app.use('/nurse',nurseRoute)
-app.use('/login',loginRoute)
+app.use('/user',loginRoute)
 app.use('/doctor',doctorRoute)
 app.use('/appoitment',appoitmentRoute)
 

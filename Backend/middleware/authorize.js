@@ -12,6 +12,7 @@ const authorize = (roles = []) => {
  
 module.exports=authorize
 
+
 //single role athorization
 // const authorize = role => (req, res, next) => {
 //   if (req.user.role !== role) {

@@ -3,9 +3,9 @@ const router = express.Router();
 const db = require('../models/db');
 const bcrypt = require('bcrypt');// to encrypt the password
 
-// const roles=require('../config/roles')
-// const authenticate = require('../middleware/authenticate')
-// const authorize = require('../middleware/authorize')
+const roles=require('../config/roles')
+const authenticate = require('../middleware/authenticate')
+const authorize = require('../middleware/authorize')
 
 
 //get all staff
@@ -43,7 +43,7 @@ router.post('/addStaff', async (req, res) => {
 
     try {
 
-        db.query(checkUsername, [userName], (err, result) => {//since username is unique, check first
+        db.query(checkUsername, [userName], (err, result) => {
             if (err) {
                 res.send({ error: 'error happened!' })
             }
